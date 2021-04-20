@@ -36,6 +36,7 @@ use Pterodactyl\Exceptions\Http\Server\ServerStateConflictException;
  * @property int $backup_limit
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon $next_checkup
  * @property \Pterodactyl\Models\User $user
  * @property \Pterodactyl\Models\Subuser[]|\Illuminate\Database\Eloquent\Collection $subusers
  * @property \Pterodactyl\Models\Allocation $allocation
@@ -67,6 +68,8 @@ class Server extends Model
     public const STATUS_INSTALL_FAILED = 'install_failed';
     public const STATUS_SUSPENDED = 'suspended';
     public const STATUS_RESTORING_BACKUP = 'restoring_backup';
+    
+    public const NEXT_CHECKUP = self::UPDATED_AT;
 
     /**
      * The table associated with the model.
@@ -98,14 +101,14 @@ class Server extends Model
      *
      * @var array
      */
-    protected $dates = [self::CREATED_AT, self::UPDATED_AT, 'deleted_at'];
+    protected $dates = [self::CREATED_AT, self::UPDATED_AT, self::NEXT_CHECKUP, 'deleted_at'];
 
     /**
      * Fields that are not mass assignable.
      *
      * @var array
      */
-    protected $guarded = ['id', self::CREATED_AT, self::UPDATED_AT, 'deleted_at'];
+    protected $guarded = ['id', self::CREATED_AT, self::UPDATED_AT, self::NEXT_CHECKUP, 'deleted_at'];
 
     /**
      * @var array
@@ -133,6 +136,7 @@ class Server extends Model
         'database_limit' => 'present|nullable|integer|min:0',
         'allocation_limit' => 'sometimes|nullable|integer|min:0',
         'backup_limit' => 'present|nullable|integer|min:0',
+        'next_checkup' => 'present|nullable|date'
     ];
 
     /**
@@ -156,6 +160,7 @@ class Server extends Model
         'database_limit' => 'integer',
         'allocation_limit' => 'integer',
         'backup_limit' => 'integer',
+        'next_checkup' => 'date',
     ];
 
     /**
