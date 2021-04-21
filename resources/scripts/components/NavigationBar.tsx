@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCogs, faLayerGroup, faSignOutAlt, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCogs, faLayerGroup, faSignOutAlt, faUserCircle, faWallet } from '@fortawesome/free-solid-svg-icons';
 import { useStoreState } from 'easy-peasy';
 import { ApplicationStore } from '@/state';
 import SearchContainer from '@/components/dashboard/search/SearchContainer';
@@ -60,6 +60,12 @@ export default () => {
                     <NavLink to={'/account'}>
                         <FontAwesomeIcon icon={faUserCircle}/>
                     </NavLink>
+                    {rootAdmin &&
+                    <NavLink to={'/billing'}>
+                        <FontAwesomeIcon icon={faWallet}/>
+                    </NavLink>
+                    }
+
                     {rootAdmin &&
                     <a href={'/admin'} rel={'noreferrer'}>
                         <FontAwesomeIcon icon={faCogs}/>
