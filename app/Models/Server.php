@@ -68,8 +68,6 @@ class Server extends Model
     public const STATUS_INSTALL_FAILED = 'install_failed';
     public const STATUS_SUSPENDED = 'suspended';
     public const STATUS_RESTORING_BACKUP = 'restoring_backup';
-    
-    public const NEXT_CHECKUP = self::UPDATED_AT;
 
     /**
      * The table associated with the model.
@@ -101,14 +99,14 @@ class Server extends Model
      *
      * @var array
      */
-    protected $dates = [self::CREATED_AT, self::UPDATED_AT, self::NEXT_CHECKUP, 'deleted_at'];
+    protected $dates = [self::CREATED_AT, self::UPDATED_AT, 'next_checkup', 'deleted_at'];
 
     /**
      * Fields that are not mass assignable.
      *
      * @var array
      */
-    protected $guarded = ['id', self::CREATED_AT, self::UPDATED_AT, self::NEXT_CHECKUP, 'deleted_at'];
+    protected $guarded = ['id', self::CREATED_AT, self::UPDATED_AT, 'next_checkup', 'deleted_at'];
 
     /**
      * @var array
@@ -136,7 +134,7 @@ class Server extends Model
         'database_limit' => 'present|nullable|integer|min:0',
         'allocation_limit' => 'sometimes|nullable|integer|min:0',
         'backup_limit' => 'present|nullable|integer|min:0',
-        'next_checkup' => 'present|nullable|date'
+		'next_checkup' => 'present|nullable|date',
     ];
 
     /**
@@ -160,7 +158,6 @@ class Server extends Model
         'database_limit' => 'integer',
         'allocation_limit' => 'integer',
         'backup_limit' => 'integer',
-        'next_checkup' => 'date',
     ];
 
     /**
