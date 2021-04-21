@@ -3,6 +3,7 @@ import { NavLink, Route, RouteComponentProps, Switch } from 'react-router-dom';
 import AccountOverviewContainer from '@/components/dashboard/AccountOverviewContainer';
 import NavigationBar from '@/components/NavigationBar';
 import DashboardContainer from '@/components/dashboard/DashboardContainer';
+import BillingContainer from '@/components/billing/BillingContainer';
 import AccountApiContainer from '@/components/dashboard/AccountApiContainer';
 import { NotFound } from '@/components/elements/ScreenBlock';
 import TransitionRouter from '@/TransitionRouter';
@@ -30,6 +31,10 @@ export default ({ location }: RouteComponentProps) => (
                 <Route path={'/account/api'} exact>
                     <AccountApiContainer/>
                 </Route>
+                <Route path={'/billing'} exact>
+                    <BillingContainer/>
+                </Route>
+
                 <Route path={'*'}>
                     <NotFound/>
                 </Route>
