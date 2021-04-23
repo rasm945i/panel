@@ -89,6 +89,7 @@ class ServerTransformer extends BaseTransformer
             ],
             $server->getUpdatedAtColumn() => $this->formatTimestamp($server->updated_at),
             $server->getCreatedAtColumn() => $this->formatTimestamp($server->created_at),
+            'next_checkup' => $this->formatTimestamp($server->next_checkup),
         ];
     }
 
