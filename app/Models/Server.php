@@ -134,7 +134,7 @@ class Server extends Model
         'database_limit' => 'present|nullable|integer|min:0',
         'allocation_limit' => 'sometimes|nullable|integer|min:0',
         'backup_limit' => 'present|nullable|integer|min:0',
-		'next_checkup' => 'present|nullable|date',
+		'next_checkup' => 'nullable|date',
     ];
 
     /**
